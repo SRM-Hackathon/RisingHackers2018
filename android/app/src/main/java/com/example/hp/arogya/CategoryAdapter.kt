@@ -28,12 +28,10 @@ class CategoryAdapter(val context: Context, val categories: List<Category>, val 
 
     inner class Holder(itemView: View?, val itemClick: (Category) -> Unit): RecyclerView.ViewHolder(itemView) {
 
-        val categoryImage = itemView?.findViewById<ImageView>(R.id.categoryBack)
         val categoryName = itemView?.findViewById<TextView>(R.id.categoryTitle)
 
         fun bindCategory(category: Category, context: Context) {
-            val resourceId = context.resources.getIdentifier(category.image, "drawable", context.packageName)
-            categoryImage?.setImageResource(resourceId)
+
             categoryName?.text = category.title
             itemView.setOnClickListener { itemClick(category) }
         }

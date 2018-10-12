@@ -58,6 +58,12 @@ class HomeActivity : AppCompatActivity() {
                     rentIntent.putExtra("pageType", "2")
                     startActivity(rentIntent)
                 }
+                "Bmi/Bmr" -> {
+                    val bmiIntent = Intent(this, BmiBmrActivity::class.java)
+                }
+                "ArogyaBaba" -> {
+                    val arogyaBabaIntent = Intent(this,AskArogyaBabaActivity::class.java)
+                }
                 else -> Toast.makeText(this, "Yeh page nhi bana hai", Toast.LENGTH_SHORT).show()
             }
         }
