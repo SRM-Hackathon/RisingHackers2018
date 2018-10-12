@@ -51,6 +51,12 @@ class MainActivity : AppCompatActivity() {
                             Toast.makeText(this, "Logged in successfully!", Toast.LENGTH_SHORT).show()
 
                             val token = response.getString("token")
+                            val uid = response.getString("uid")
+                            Toast.makeText(this,uid.toString(),Toast.LENGTH_SHORT).show()
+                            val intent = Intent(this,HomeActivity::class.java)
+                            intent.putExtra("uid",uid.toString())
+                            intent.putExtra("token",token.toString())
+                            startActivity(intent)
 
                         } else {
 

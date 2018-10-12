@@ -35,34 +35,44 @@ class HomeActivity : AppCompatActivity() {
             val title = category.title.replace(" ", "")
             when (title) {
                 "Pedometer" -> {
-                    val sellIntent = Intent(this, PedometerActivity::class.java)
-                    sellIntent.putExtra("id", id)
-                    sellIntent.putExtra("first", first)
-                    sellIntent.putExtra("name", name)
-                    sellIntent.putExtra("pageType", "2")
-                    startActivity(sellIntent)
+                    val pedointent = Intent(this, PedometerActivity::class.java)
+                    val uid = intent.getStringExtra("uid")
+                    pedointent.putExtra("uid",uid)
+                    val token = intent.getStringExtra("token")
+                    pedointent.putExtra("token",token)
+                    startActivity(pedointent)
                 }
                 "FoodScanner" -> {
-                    val buyIntent = Intent(this, FoodScannerActivity::class.java)
-                    buyIntent.putExtra("id", id)
-                    buyIntent.putExtra("first", first)
-                    buyIntent.putExtra("name", name)
-                    buyIntent.putExtra("pageType", "1")
-                    startActivity(buyIntent)
+                    val foodintent = Intent(this, FoodScannerActivity::class.java)
+                    val uid = intent.getStringExtra("uid")
+                    foodintent.putExtra("uid",uid)
+                    val token = intent.getStringExtra("token")
+                    foodintent.putExtra("token",token)
+                    startActivity(foodintent)
                 }
                 "Profile" -> {
-                    val rentIntent = Intent(this, ProfileActivity::class.java)
-                    rentIntent.putExtra("id", id)
-                    rentIntent.putExtra("first", first)
-                    rentIntent.putExtra("name", name)
-                    rentIntent.putExtra("pageType", "2")
-                    startActivity(rentIntent)
+                    val profileIntent = Intent(this, ProfileActivity::class.java)
+                    val uid = intent.getStringExtra("uid")
+                    profileIntent.putExtra("uid",uid)
+                    val token = intent.getStringExtra("token")
+                    profileIntent.putExtra("token",token)
+                    startActivity(profileIntent)
                 }
                 "Bmi/Bmr" -> {
                     val bmiIntent = Intent(this, BmiBmrActivity::class.java)
+                    val uid = intent.getStringExtra("uid")
+                    bmiIntent.putExtra("uid",uid)
+                    val token = intent.getStringExtra("token")
+                    bmiIntent.putExtra("token",token)
+                    startActivity(bmiIntent)
                 }
                 "ArogyaBaba" -> {
                     val arogyaBabaIntent = Intent(this,AskArogyaBabaActivity::class.java)
+                    val uid = intent.getStringExtra("uid")
+                    arogyaBabaIntent.putExtra("uid",uid)
+                    val token = intent.getStringExtra("token")
+                    arogyaBabaIntent.putExtra("token",token)
+                    startActivity(arogyaBabaIntent)
                 }
                 else -> Toast.makeText(this, "Yeh page nhi bana hai", Toast.LENGTH_SHORT).show()
             }

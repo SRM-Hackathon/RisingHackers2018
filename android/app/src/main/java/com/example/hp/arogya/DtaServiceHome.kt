@@ -8,8 +8,8 @@ object DataServiceHome {
             Category("FoodScanner"),
             Category("Pedometer"),
             Category("Profile"),
-            Category("BMI/BMR"),
-            Category("Arogya Baba")
+            Category("Bmi/Bmr"),
+            Category("ArogyaBaba")
 
     )
 }

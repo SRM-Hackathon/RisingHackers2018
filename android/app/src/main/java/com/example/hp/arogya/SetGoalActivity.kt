@@ -1,5 +1,6 @@
 package com.example.hp.arogya
 
+import android.content.Intent
 import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -43,9 +44,64 @@ class SetGoalActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
         pedometer_icon.setColorFilter(Color.rgb(255, 255, 255))
         pedometer_text.setTextColor(Color.rgb(255, 255, 255))
 
+        bmi_bmr.setOnClickListener {
+            val intent1 = Intent(this,BmiBmrActivity::class.java)
+            val uid = intent.getStringExtra("uid")
+            intent1.putExtra("uid",uid)
+            val token = intent.getStringExtra("token")
+            intent1.putExtra("token",token)
+            startActivity(intent1)
+        }
+        profile.setOnClickListener {
+            val intent1 = Intent(this,ProfileActivity::class.java)
+            val uid = intent.getStringExtra("uid")
+            intent1.putExtra("uid",uid)
+            val token = intent.getStringExtra("token")
+            intent1.putExtra("token",token)
+            startActivity(intent1)
+        }
+        chat.setOnClickListener {
+            val intent1 = Intent(this,AskArogyaBabaActivity::class.java)
+            val uid = intent.getStringExtra("uid")
+            intent1.putExtra("uid",uid)
+            val token = intent.getStringExtra("token")
+            intent1.putExtra("token",token)
+            startActivity(intent1)
+        }
+        home_button.setOnClickListener {
+            val intent1 = Intent(this,HomeActivity::class.java)
+            val uid = intent.getStringExtra("uid")
+            intent1.putExtra("uid",uid)
+            val token = intent.getStringExtra("token")
+            intent1.putExtra("token",token)
+            startActivity(intent1)
+        }
+        pedometer.setOnClickListener {
+            val intent1 = Intent(this,PedometerActivity::class.java)
+
+            val uid = intent.getStringExtra("uid")
+            intent1.putExtra("uid",uid)
+            val token = intent.getStringExtra("token")
+            intent1.putExtra("token",token)
+            startActivity(intent1)
+        }
+        food_scanner.setOnClickListener {
+            val intent1 = Intent(this,FoodScannerActivity::class.java)
+            val uid = intent.getStringExtra("uid")
+            intent1.putExtra("uid",uid)
+            val token = intent.getStringExtra("token")
+            intent1.putExtra("token",token)
+            startActivity(intent1)
+        }
+        logout.setOnClickListener {
+            val intent1 = Intent(this,MainActivity::class.java)
+            startActivity(intent1)
+        }
+
         setGoal.setOnClickListener {
             val jsonobj = JSONObject()
-            val uid = "5bc08602c0ca9d00303938b6"
+            val uid = intent.getStringExtra("uid")
+            val token = intent.getStringExtra("token")
             jsonobj.put("uid", uid)
             jsonobj.put("cb", "")
             jsonobj.put("nos",totalSteps.text)
