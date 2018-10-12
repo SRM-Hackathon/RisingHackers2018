@@ -28,7 +28,7 @@ module.exports = (app) => {
                         }
                         return res.send({
                             success: true,
-                            message: "FUCK OFF"
+                            message: "Saved Successfully"
                         })
     
                     });
@@ -40,7 +40,7 @@ module.exports = (app) => {
                         }
                         return res.send({
                             success: true,
-                            message: "FUCK OFF"
+                            message: "Saved Successfully"
                         })
     
                     }); 
@@ -52,7 +52,7 @@ module.exports = (app) => {
                         }
                         return res.send({
                             success: true,
-                            message: "FUCK OFF"
+                            message: "Saved Successfully"
                         })
     
                     });
