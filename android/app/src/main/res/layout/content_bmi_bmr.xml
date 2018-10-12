@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".BmiBmrActivity"
+    android:background="@drawable/grad_black"
+    tools:showIn="@layout/app_bar_bmi_bmr">
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_height"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="100dp"
+        android:padding="10dp"
+        android:textColorHint="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/input_height"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/white"
+            android:hint="@string/height_in_cms"
+            android:inputType="numberDecimal"
+            android:theme="@style/EditTextTheme"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            tools:ignore="LabelFor,TextFields"
+            tools:targetApi="lollipop" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_weight"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_layout_height"
+        android:textColorHint="@android:color/white">
+
+        <EditText
+            android:id="@+id/input_weight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/weight_in_kg"
+            android:inputType="numberDecimal"
+            android:textSize="20sp"
+            android:theme="@style/EditTextTheme"
+            android:backgroundTint="@android:color/white"
+            android:textColor="@android:color/white"
+            tools:ignore="LabelFor,TextFields"
+            tools:targetApi="lollipop" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/submit_bmi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/button_back"
+        android:onClick="submit_bmi"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:text="@string/bmi"
+        android:textColor="@android:color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_layout_weight" />
+
+    <Button
+        android:id="@+id/submit_bmr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/button_back"
+        android:onClick="submit_bmr"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:text="@string/bmr"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_layout_weight" />
+
+</android.support.constraint.ConstraintLayout>
