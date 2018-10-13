@@ -81,6 +81,10 @@ class BmiBmrActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             intent1.putExtra("token", token)
             startActivity(intent1)
         }
+        logout.setOnClickListener {
+            val intent1 = Intent(this,MainActivity::class.java)
+            startActivity(intent1)
+        }
 
 
 
@@ -99,6 +103,10 @@ class BmiBmrActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             intentBmiResult.putExtra("bmi", bmi.toString())
             intentBmiResult.putExtra("weight", weight.toString())
             intentBmiResult.putExtra("height", height.toString())
+            val uid = intent.getStringExtra("uid")
+            intentBmiResult.putExtra("uid", uid)
+            val token = intent.getStringExtra("token")
+            intentBmiResult.putExtra("token", token)
             startActivity(intentBmiResult)
 
         } else {
@@ -128,6 +136,10 @@ class BmiBmrActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
             val intentBmrResult = Intent(this, BmiBmrResultActivity::class.java)
             intentBmrResult.putExtra("mode", "bmr")
             intentBmrResult.putExtra("bmr", calories.toString())
+            val uid = intent.getStringExtra("uid")
+            intentBmrResult.putExtra("uid", uid)
+            val token = intent.getStringExtra("token")
+            intentBmrResult.putExtra("token", token)
             startActivity(intentBmrResult)
 
         } else {

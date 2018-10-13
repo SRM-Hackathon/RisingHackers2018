@@ -22,6 +22,12 @@ import kotlinx.android.synthetic.main.content_food_scanner.*
 import kotlinx.android.synthetic.main.nav_menu.*
 import java.io.IOException
 import java.util.*
+import android.support.annotation.NonNull
+import android.util.Log
+import com.google.android.gms.tasks.OnFailureListener
+import com.google.android.gms.tasks.OnSuccessListener
+
+
 
 class FoodScannerActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -31,6 +37,8 @@ class FoodScannerActivity : AppCompatActivity(), NavigationView.OnNavigationItem
     internal var storage: FirebaseStorage?=null
     internal var storageReference: StorageReference?=null
     private lateinit var mStorageRef:StorageReference
+
+    lateinit var downurl: Uri
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -106,31 +114,53 @@ class FoodScannerActivity : AppCompatActivity(), NavigationView.OnNavigationItem
         uploadImage.setOnClickListener {
             uploadFile()
         }
+        val c = Calendar.getInstance()
+        val day = c.get(Calendar.DAY_OF_MONTH)
+
+        val hashMap:HashMap<Int,Array<String>> = HashMap<Int,Array<String>>()
+        hashMap.put(0, arrayOf("aloo beans","340",day.toString()))
+        hashMap.put(1,arrayOf("banana","89",day.toString()))
+        hashMap.put(2,arrayOf("besan ladoo","173",day.toString()))
+        hashMap.put(3,arrayOf("bhindi sabji","33",day.toString()))
+        hashMap.put(4,arrayOf("chicken curry","240",day.toString()))
+        hashMap.put(5,arrayOf("chole","123",day.toString()))
+
 
     }
 
     private fun uploadFile() {
-        if(filepath != null) {
+        if (filepath != null) {
             val progressDialog = ProgressDialog(this)
             progressDialog.setTitle("Loading...")
             progressDialog.show()
 
             val imageRef = storageReference!!.child("images/" + UUID.randomUUID().toString())
+            Toast.makeText(this,imageRef.toString(),Toast.LENGTH_LONG).show()
+            Log.d("TAG", imageRef.toString())
             imageRef.putFile(filepath!!)
                     .addOnSuccessListener {
                         progressDialog.dismiss()
-                        Toast.makeText(applicationContext,"File Uploaded", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(applicationContext, "File Uploaded", Toast.LENGTH_SHORT).show()
+                        imageRef.downloadUrl.addOnSuccessListener {
+                            downurl = it
+                            Toast.makeText(this,downurl.toString(),Toast.LENGTH_LONG).show()
+                        }
+
                     }
                     .addOnFailureListener {
                         progressDialog.dismiss()
-                        Toast.makeText(applicationContext,"failed", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(applicationContext, "failed", Toast.LENGTH_SHORT).show()
                     }
                     .addOnProgressListener { taskSnapShot ->
-                        val progress = 100.0 * taskSnapShot.bytesTransferred/taskSnapShot.totalByteCount
-                        progressDialog.setMessage("Uploaded "+progress.toInt()+"%...")
+                        val progress = 100.0 * taskSnapShot.bytesTransferred / taskSnapShot.totalByteCount
+                        progressDialog.setMessage("Uploaded " + progress.toInt() + "%...")
                     }
-        }
 
+
+
+
+
+        }
     }
 
 
@@ -174,3 +204,7 @@ class FoodScannerActivity : AppCompatActivity(), NavigationView.OnNavigationItem
         return true
     }
 }
+
+
+
+

@@ -41,9 +41,10 @@ class AskArogyaBabaActivity : AppCompatActivity(), NavigationView.OnNavigationIt
 
         nav_view.setNavigationItemSelectedListener(this)
 
-        val topics = arrayOf("--Select topic--", "Egg", "Quinoa")
+        val topics = arrayOf("--Select topic--", "Almonds", "Apple", "Avocado", "Beans", "Eggs", "Health", "Quinoa", "Salmon", "Seeds", "Watermelon", "Yogurt")
         val topicsAdapter = ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, topics)
         topic.adapter = topicsAdapter
+
 
     }
 

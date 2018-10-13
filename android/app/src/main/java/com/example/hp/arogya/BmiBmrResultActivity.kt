@@ -18,9 +18,9 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.tomer.fadingtextview.FadingTextView
 import kotlinx.android.synthetic.main.activity_bmi_bmr_result.*
-import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.app_bar_bmi_bmr_result.*
 import kotlinx.android.synthetic.main.content_bmi_bmr_result.*
+import kotlinx.android.synthetic.main.nav_menu.*
 import org.json.JSONObject
 
 class BmiBmrResultActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -37,6 +37,59 @@ class BmiBmrResultActivity : AppCompatActivity(), NavigationView.OnNavigationIte
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
+
+        bmi_bmr.setOnClickListener {
+            val intent1 = Intent(this, BmiBmrActivity::class.java)
+            val uid = intent.getStringExtra("uid")
+            intent1.putExtra("uid",uid)
+            val token = intent.getStringExtra("token")
+            intent1.putExtra("token",token)
+            startActivity(intent1)
+        }
+        food_scanner.setOnClickListener {
+            val intent1 = Intent(this,FoodScannerActivity::class.java)
+            val uid = intent.getStringExtra("uid")
+            intent1.putExtra("uid",uid)
+            val token = intent.getStringExtra("token")
+            intent1.putExtra("token",token)
+            startActivity(intent1)
+        }
+        chat.setOnClickListener {
+            val intent1 = Intent(this,AskArogyaBabaActivity::class.java)
+            val uid = intent.getStringExtra("uid")
+            intent1.putExtra("uid",uid)
+            val token = intent.getStringExtra("token")
+            intent1.putExtra("token",token)
+            startActivity(intent1)
+        }
+        home_button.setOnClickListener {
+            val intent1 = Intent(this,HomeActivity::class.java)
+            val uid = intent.getStringExtra("uid")
+            intent1.putExtra("uid",uid)
+            val token = intent.getStringExtra("token")
+            intent1.putExtra("token",token)
+            startActivity(intent1)
+        }
+        pedometer.setOnClickListener {
+            val intent1 = Intent(this,PedometerActivity::class.java)
+            val uid = intent.getStringExtra("uid")
+            intent1.putExtra("uid",uid)
+            val token = intent.getStringExtra("token")
+            intent1.putExtra("token",token)
+            startActivity(intent1)
+        }
+        profile.setOnClickListener {
+            val intent1 = Intent(this,ProfileActivity::class.java)
+            val uid = intent.getStringExtra("uid")
+            intent1.putExtra("uid",uid)
+            val token = intent.getStringExtra("token")
+            intent1.putExtra("token",token)
+            startActivity(intent1)
+        }
+        logout.setOnClickListener {
+            val intent1 = Intent(this,MainActivity::class.java)
+            startActivity(intent1)
+        }
 
         val mode = intent.getStringExtra("mode")
 
@@ -107,7 +160,7 @@ class BmiBmrResultActivity : AppCompatActivity(), NavigationView.OnNavigationIte
 
             val url = "https://arogya2018.herokuapp.com/api/account/bmi"
 
-            val uid = "5bba4897bc9bab0030ddc2e6"
+            val uid = intent.getStringExtra("uid")
 
             val jsonobj = JSONObject()
 
@@ -127,7 +180,7 @@ class BmiBmrResultActivity : AppCompatActivity(), NavigationView.OnNavigationIte
                             Toast.makeText(this, jsonMessage, Toast.LENGTH_SHORT).show()
                         }
                     }, Response.ErrorListener {
-                Log.d("Signup", it.message)
+                Log.d("TAG", it.message)
             })
             que.add(request)
 

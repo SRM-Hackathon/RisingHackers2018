@@ -125,6 +125,7 @@
             android:src="@drawable/ic_chat_bubble_black_24dp" />
 
         <TextView
+            android:id="@+id/chat_text"
             android:layout_width="120dp"
             android:layout_height="20dp"
             android:layout_marginLeft="20dp"
