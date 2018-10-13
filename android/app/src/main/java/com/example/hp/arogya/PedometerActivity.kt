@@ -76,6 +76,51 @@ class PedometerActivity : AppCompatActivity(), SensorEventListener, StepListener
         pedometer_icon.setColorFilter(Color.rgb(255, 255, 255))
         pedometer_text.setTextColor(Color.rgb(255, 255, 255))
 
+        bmi_bmr.setOnClickListener {
+            val intent1 = Intent(this, BmiBmrActivity::class.java)
+            val uid = intent.getStringExtra("uid")
+            intent1.putExtra("uid",uid)
+            val token = intent.getStringExtra("token")
+            intent1.putExtra("token",token)
+            startActivity(intent1)
+        }
+        profile.setOnClickListener {
+            val intent1 = Intent(this,ProfileActivity::class.java)
+            val uid = intent.getStringExtra("uid")
+            intent1.putExtra("uid",uid)
+            val token = intent.getStringExtra("token")
+            intent1.putExtra("token",token)
+            startActivity(intent1)
+        }
+        chat.setOnClickListener {
+            val intent1 = Intent(this,AskArogyaBabaActivity::class.java)
+            val uid = intent.getStringExtra("uid")
+            intent1.putExtra("uid",uid)
+            val token = intent.getStringExtra("token")
+            intent1.putExtra("token",token)
+            startActivity(intent1)
+        }
+        home_button.setOnClickListener {
+            val intent1 = Intent(this,HomeActivity::class.java)
+            val uid = intent.getStringExtra("uid")
+            intent1.putExtra("uid",uid)
+            val token = intent.getStringExtra("token")
+            intent1.putExtra("token",token)
+            startActivity(intent1)
+        }
+        food_scanner.setOnClickListener {
+            val intent1 = Intent(this,FoodScannerActivity::class.java)
+            val uid = intent.getStringExtra("uid")
+            intent1.putExtra("uid",uid)
+            val token = intent.getStringExtra("token")
+            intent1.putExtra("token",token)
+            startActivity(intent1)
+        }
+        logout.setOnClickListener {
+            val intent1 = Intent(this,MainActivity::class.java)
+            startActivity(intent1)
+        }
+
         // Get an instance of the SensorManager
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
         simpleStepDetector = StepDetector()
@@ -92,7 +137,9 @@ class PedometerActivity : AppCompatActivity(), SensorEventListener, StepListener
             val temp = tvSteps.text.toString()
             val totalCalorie = temp.toFloat()/20
             Toast.makeText(this, "right", Toast.LENGTH_SHORT).show()
-            val uid = "5bbf7c1f8464b30030457602"
+            val uid = intent.getStringExtra("uid")
+            val token = intent.getStringExtra("token")
+
             jsonobj.put("uid", uid)
             jsonobj.put("cb",totalCalorie.toString())
             jsonobj.put("nos", "")
@@ -127,6 +174,10 @@ class PedometerActivity : AppCompatActivity(), SensorEventListener, StepListener
 
         btnGoal.setOnClickListener {
             val gotoSetGoal = Intent(this, SetGoalActivity::class.java)
+            val uid = intent.getStringExtra("uid")
+            gotoSetGoal.putExtra("uid",uid)
+            val token = intent.getStringExtra("token")
+            gotoSetGoal.putExtra("token",token)
             startActivity(gotoSetGoal)
         }
         }

@@ -41,13 +41,55 @@ class BmiBmrActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         bmi_bmr_icon.setColorFilter(Color.rgb(255, 255, 255))
         bmi_bmr_text.setTextColor(Color.rgb(255, 255, 255))
 
-    }
+        food_scanner.setOnClickListener {
+            val intent1 = Intent(this, FoodScannerActivity::class.java)
+            val uid = intent.getStringExtra("uid")
+            intent1.putExtra("uid", uid)
+            val token = intent.getStringExtra("token")
+            intent1.putExtra("token", token)
+            startActivity(intent1)
+        }
+        profile.setOnClickListener {
+            val intent1 = Intent(this, ProfileActivity::class.java)
+            val uid = intent.getStringExtra("uid")
+            intent1.putExtra("uid", uid)
+            val token = intent.getStringExtra("token")
+            intent1.putExtra("token", token)
+            startActivity(intent1)
+        }
+        chat.setOnClickListener {
+            val intent1 = Intent(this, AskArogyaBabaActivity::class.java)
+            val uid = intent.getStringExtra("uid")
+            intent1.putExtra("uid", uid)
+            val token = intent.getStringExtra("token")
+            intent1.putExtra("token", token)
+            startActivity(intent1)
+        }
+        home_button.setOnClickListener {
+            val intent1 = Intent(this, HomeActivity::class.java)
+            val uid = intent.getStringExtra("uid")
+            intent1.putExtra("uid", uid)
+            val token = intent.getStringExtra("token")
+            intent1.putExtra("token", token)
+            startActivity(intent1)
+        }
+        pedometer.setOnClickListener {
+            val intent1 = Intent(this, PedometerActivity::class.java)
+            val uid = intent.getStringExtra("uid")
+            intent1.putExtra("uid", uid)
+            val token = intent.getStringExtra("token")
+            intent1.putExtra("token", token)
+            startActivity(intent1)
+        }
 
-    fun submit_bmi(view: View) {
 
-        if(!input_height.text.isEmpty() && !input_weight.text.isEmpty()) {
 
-            val height = input_height.text.toString().toFloat()/100
+
+    submit_bmi.setOnClickListener  {
+
+        if (!input_height.text.isEmpty() && !input_weight.text.isEmpty()) {
+
+            val height = input_height.text.toString().toFloat() / 100
             val weight = input_weight.text.toString().toFloat()
 
             val bmi = weight / (height * height)
@@ -65,21 +107,21 @@ class BmiBmrActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
     }
 
-    fun submit_bmr(view: View) {
+    submit_bmr.setOnClickListener {
 
         val age = 19
         val gender = 'M'
 
-        if(!input_height.text.isEmpty() && !input_weight.text.isEmpty()) {
+        if (!input_height.text.isEmpty() && !input_weight.text.isEmpty()) {
 
             val height = input_height.text.toString().toFloat()
             val weight = input_weight.text.toString().toFloat()
 
             var calories = 10 * height + 6.25 * weight - 5 * age
 
-            if(gender == 'M') {
+            if (gender == 'M') {
                 calories += 5
-            } else if(gender == 'F') {
+            } else if (gender == 'F') {
                 calories -= 161
             }
 
@@ -93,6 +135,7 @@ class BmiBmrActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         }
 
     }
+}
 
     override fun onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {

@@ -44,8 +44,54 @@ class ProfileActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
         profile_icon.setColorFilter(Color.rgb(255, 255, 255))
         profile_text.setTextColor(Color.rgb(255, 255, 255))
 
+        bmi_bmr.setOnClickListener {
+            val intent1 = Intent(this, BmiBmrActivity::class.java)
+            val uid = intent.getStringExtra("uid")
+            intent1.putExtra("uid",uid)
+            val token = intent.getStringExtra("token")
+            intent1.putExtra("token",token)
+            startActivity(intent1)
+        }
+        food_scanner.setOnClickListener {
+            val intent1 = Intent(this,ProfileActivity::class.java)
+            val uid = intent.getStringExtra("uid")
+            intent1.putExtra("uid",uid)
+            val token = intent.getStringExtra("token")
+            intent1.putExtra("token",token)
+            startActivity(intent1)
+        }
+        chat.setOnClickListener {
+            val intent1 = Intent(this,AskArogyaBabaActivity::class.java)
+            val uid = intent.getStringExtra("uid")
+            intent1.putExtra("uid",uid)
+            val token = intent.getStringExtra("token")
+            intent1.putExtra("token",token)
+            startActivity(intent1)
+        }
+        home_button.setOnClickListener {
+            val intent1 = Intent(this,HomeActivity::class.java)
+            val uid = intent.getStringExtra("uid")
+            intent1.putExtra("uid",uid)
+            val token = intent.getStringExtra("token")
+            intent1.putExtra("token",token)
+            startActivity(intent1)
+        }
+        pedometer.setOnClickListener {
+            val intent1 = Intent(this,PedometerActivity::class.java)
+            val uid = intent.getStringExtra("uid")
+            intent1.putExtra("uid",uid)
+            val token = intent.getStringExtra("token")
+            intent1.putExtra("token",token)
+            startActivity(intent1)
+        }
+        logout.setOnClickListener {
+            val intent1 = Intent(this,MainActivity::class.java)
+            startActivity(intent1)
+        }
+
         val jsonobj = JSONObject()
-        val uid = "5bba4897bc9bab0030ddc2e6"
+        val uid = intent.getStringExtra("uid")
+        val token = intent.getStringExtra("token")
         jsonobj.put("uid", uid)
         val loginRequest = object : JsonObjectRequest(Method.POST, url, jsonobj, Response.Listener { response ->
             try {
@@ -73,6 +119,8 @@ class ProfileActivity : AppCompatActivity(), NavigationView.OnNavigationItemSele
 
         goToEditProfile.setOnClickListener {
             val gotoEditProfile = Intent(this, EditProfileActivity::class.java)
+            gotoEditProfile.putExtra("uid",uid)
+            gotoEditProfile.putExtra("token",token)
             startActivity(gotoEditProfile)
         }
 

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,7 +9,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:background="@color/colorPrimary"/>
+        android:background="@color/colorPrimary" />
 
     <RelativeLayout
         android:id="@+id/home_button"
@@ -25,21 +24,21 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginLeft="40dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="10dp"
-            android:src="@drawable/ic_home_black_24dp"
-            android:layout_marginStart="40dp" />
+            android:src="@drawable/ic_home_black_24dp" />
 
         <TextView
             android:layout_width="100dp"
             android:layout_height="20dp"
             android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
-            android:textStyle="bold"
-            android:textSize="15sp"
+            android:layout_toEndOf="@id/home_icon"
             android:layout_toRightOf="@id/home_icon"
             android:text="@string/home"
-            android:layout_marginStart="20dp"
-            android:layout_toEndOf="@id/home_icon" />
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
     </RelativeLayout>
 
@@ -57,22 +56,22 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginLeft="40dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="10dp"
-            android:src="@drawable/ic_person_black_24dp"
-            android:layout_marginStart="40dp" />
+            android:src="@drawable/ic_person_black_24dp" />
 
         <TextView
             android:id="@+id/profile_text"
             android:layout_width="100dp"
             android:layout_height="20dp"
             android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
-            android:textStyle="bold"
-            android:textSize="15sp"
+            android:layout_toEndOf="@id/profile_icon"
             android:layout_toRightOf="@id/profile_icon"
             android:text="@string/profile"
-            android:layout_marginStart="20dp"
-            android:layout_toEndOf="@id/profile_icon" />
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
     </RelativeLayout>
 
@@ -89,22 +88,22 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginLeft="40dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="10dp"
-            android:src="@drawable/ic_thumbs_up_down_black_24dp"
-            android:layout_marginStart="40dp" />
+            android:src="@drawable/ic_thumbs_up_down_black_24dp" />
 
         <TextView
             android:id="@+id/bmi_bmr_text"
             android:layout_width="100dp"
             android:layout_height="20dp"
             android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
-            android:textStyle="bold"
-            android:textSize="15sp"
+            android:layout_toEndOf="@id/bmi_bmr_icon"
             android:layout_toRightOf="@id/bmi_bmr_icon"
             android:text="@string/bmi_bmr"
-            android:layout_marginStart="20dp"
-            android:layout_toEndOf="@id/bmi_bmr_icon" />
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
     </RelativeLayout>
 
@@ -121,21 +120,21 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginLeft="40dp"
+            android:layout_marginStart="40dp"
             android:layout_marginTop="10dp"
-            android:src="@drawable/ic_chat_bubble_black_24dp"
-            android:layout_marginStart="40dp" />
+            android:src="@drawable/ic_chat_bubble_black_24dp" />
 
         <TextView
             android:layout_width="120dp"
             android:layout_height="20dp"
             android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
-            android:textStyle="bold"
-            android:textSize="15sp"
+            android:layout_toEndOf="@id/chat_icon"
             android:layout_toRightOf="@id/chat_icon"
             android:text="@string/ask_arogya_baba"
-            android:layout_marginStart="20dp"
-            android:layout_toEndOf="@id/chat_icon" />
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
     </RelativeLayout>
 
@@ -151,23 +150,23 @@
             android:id="@+id/food_scanner_icon"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="40dp"
-            android:src="@drawable/ic_search_black_24dp"
-            android:layout_marginStart="40dp" />
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_search_black_24dp" />
 
         <TextView
             android:id="@+id/food_scanner_text"
             android:layout_width="100dp"
             android:layout_height="20dp"
             android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
-            android:textStyle="bold"
-            android:textSize="15sp"
+            android:layout_toEndOf="@id/food_scanner_icon"
             android:layout_toRightOf="@id/food_scanner_icon"
             android:text="@string/food_scanner"
-            android:layout_marginStart="20dp"
-            android:layout_toEndOf="@id/food_scanner_icon" />
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
     </RelativeLayout>
 
@@ -183,23 +182,57 @@
             android:id="@+id/pedometer_icon"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="40dp"
-            android:src="@drawable/ic_directions_walk_black_24dp"
-            android:layout_marginStart="40dp" />
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_directions_walk_black_24dp" />
 
         <TextView
             android:id="@+id/pedometer_text"
             android:layout_width="100dp"
             android:layout_height="20dp"
             android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
-            android:textStyle="bold"
-            android:textSize="15sp"
+            android:layout_toEndOf="@id/pedometer_icon"
             android:layout_toRightOf="@id/pedometer_icon"
             android:text="@string/pedometer"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/logout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/pedometer">
+
+        <ImageView
+            android:id="@+id/logout_icon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="10dp"
+            android:src="@color/colorPrimary"/>
+
+
+        <TextView
+            android:id="@+id/logout_text"
+            android:layout_width="100dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginStart="20dp"
-            android:layout_toEndOf="@id/pedometer_icon" />
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@id/logout_icon"
+            android:layout_toRightOf="@id/logout_icon"
+            android:text="Logout"
+            android:textSize="15sp"
+            android:textStyle="bold"/>
 
     </RelativeLayout>
 
