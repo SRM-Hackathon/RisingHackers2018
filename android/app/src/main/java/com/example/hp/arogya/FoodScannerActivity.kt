@@ -24,9 +24,16 @@ import java.io.IOException
 import java.util.*
 import android.support.annotation.NonNull
 import android.util.Log
+import com.android.volley.DefaultRetryPolicy
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
-
+import kotlinx.android.synthetic.main.content_ask_arogya_baba.*
+import kotlinx.android.synthetic.main.content_profile.*
+import org.json.JSONException
+import org.json.JSONObject
 
 
 class FoodScannerActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -38,7 +45,8 @@ class FoodScannerActivity : AppCompatActivity(), NavigationView.OnNavigationItem
     internal var storageReference: StorageReference?=null
     private lateinit var mStorageRef:StorageReference
 
-    lateinit var downurl: Uri
+    var category = arrayOf("","","")
+    var s = "false"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -108,28 +116,94 @@ class FoodScannerActivity : AppCompatActivity(), NavigationView.OnNavigationItem
         storageReference = storage!!.reference
 
 
+
         selectImage.setOnClickListener {
             showFileChooser()
         }
         uploadImage.setOnClickListener {
             uploadFile()
         }
-        val c = Calendar.getInstance()
-        val day = c.get(Calendar.DAY_OF_MONTH)
 
-        val hashMap:HashMap<Int,Array<String>> = HashMap<Int,Array<String>>()
-        hashMap.put(0, arrayOf("aloo beans","340",day.toString()))
-        hashMap.put(1,arrayOf("banana","89",day.toString()))
-        hashMap.put(2,arrayOf("besan ladoo","173",day.toString()))
-        hashMap.put(3,arrayOf("bhindi sabji","33",day.toString()))
-        hashMap.put(4,arrayOf("chicken curry","240",day.toString()))
-        hashMap.put(5,arrayOf("chole","123",day.toString()))
+        submit_btn.setOnClickListener {
+
+            if(s == "true") {
+                var cal = 0
+                cal = category[1].toInt()
+                val date = category[2]
+                val name = category[0]
+                Toast.makeText(this,name.toString(),Toast.LENGTH_LONG).show()
+                cal = cal * totalQuantity.text.toString().toInt()
+                var url = "https://arogya2018.herokuapp.com/api/account/daily"
+                val uid = intent.getStringExtra("uid")
+                val jsonobj = JSONObject()
+                jsonobj.put("uid",uid.toString())
+                jsonobj.put("cal",cal.toInt())
+                jsonobj.put("day",date.toInt())
+
+                val loginRequest = object : JsonObjectRequest(Method.POST, url, jsonobj, Response.Listener { response ->
+                    try {
+                        textCalorie.setText("No. of Calories "+cal.toString())
+                        url = "https://arogya2018.herokuapp.com/api/account/fetchbmr"
+                        val uid = "5bc110facb58930030b87f9b"
+                        val loginRequest = object : JsonObjectRequest(Method.POST, url, jsonobj, Response.Listener { response ->
+                            try {
+                                val bmr = response.getString("bmr")
+                                textCalorie.setText(cal.toString()+"/"+bmr.toString())
+
+                            }catch (e: JSONException) {
+                                Toast.makeText(this, e.localizedMessage, Toast.LENGTH_SHORT).show()
+                                Log.d("JSON", "EXC: " + e.localizedMessage)
+                            }
+                        }, Response.ErrorListener { error ->
+                            Log.d("ERROR", "Could not login user: $error")
+                        }) {
+
+                            override fun getBodyContentType(): String {
+                                return "application/json; charset=utf-8"
+                            }
+                        }
+                        Volley.newRequestQueue(this).add(loginRequest)
 
 
-    }
+
+
+            }catch (e: JSONException) {
+                        Toast.makeText(this, e.localizedMessage, Toast.LENGTH_SHORT).show()
+                        Log.d("JSON", "EXC: " + e.localizedMessage)
+                    }
+                }, Response.ErrorListener { error ->
+                    Log.d("ERROR", "Could not login user: $error")
+                }) {
+
+                    override fun getBodyContentType(): String {
+                        return "application/json; charset=utf-8"
+                    }
+                }
+                Volley.newRequestQueue(this).add(loginRequest)
+        }else {
+                Toast.makeText(this,"Loading...",Toast.LENGTH_LONG).show()
+                Toast.makeText(this,"Loading...",Toast.LENGTH_LONG).show()
+
+            }
+            }
+        }
+
 
     private fun uploadFile() {
+
+        var downurl: Uri
+
         if (filepath != null) {
+            val c = Calendar.getInstance()
+            val day = c.get(Calendar.DAY_OF_MONTH)
+
+            val hashMap:HashMap<Int,Array<String>> = HashMap<Int,Array<String>>()
+            hashMap.put(0, arrayOf("aloo beans","340",day.toString()))
+            hashMap.put(1,arrayOf("banana","89",day.toString()))
+            hashMap.put(2,arrayOf("besan ladoo","173",day.toString()))
+            hashMap.put(3,arrayOf("bhindi sabji","33",day.toString()))
+            hashMap.put(4,arrayOf("chicken curry","240",day.toString()))
+            hashMap.put(5,arrayOf("chole","123",day.toString()))
             val progressDialog = ProgressDialog(this)
             progressDialog.setTitle("Loading...")
             progressDialog.show()
@@ -144,6 +218,7 @@ class FoodScannerActivity : AppCompatActivity(), NavigationView.OnNavigationItem
                         imageRef.downloadUrl.addOnSuccessListener {
                             downurl = it
                             Toast.makeText(this,downurl.toString(),Toast.LENGTH_LONG).show()
+                            make_prediction(downurl)
                         }
 
                     }
@@ -155,12 +230,54 @@ class FoodScannerActivity : AppCompatActivity(), NavigationView.OnNavigationItem
                         val progress = 100.0 * taskSnapShot.bytesTransferred / taskSnapShot.totalByteCount
                         progressDialog.setMessage("Uploaded " + progress.toInt() + "%...")
                     }
-
-
-
-
-
         }
+    }
+
+    fun make_prediction(downu: Uri) {
+
+        val c = Calendar.getInstance()
+        val day = c.get(Calendar.DAY_OF_MONTH)
+
+        val hashMap:HashMap<Int,Array<String>> = HashMap<Int,Array<String>>()
+        hashMap.put(0, arrayOf("aloo beans","5",day.toString()))
+        hashMap.put(1,arrayOf("banana","8",day.toString()))
+        hashMap.put(2,arrayOf("besan ladoo","17",day.toString()))
+        hashMap.put(3,arrayOf("bhindi sabji","3",day.toString()))
+        hashMap.put(4,arrayOf("chicken curry","6",day.toString()))
+        hashMap.put(5,arrayOf("chole","12",day.toString()))
+
+        val url = "http://e986272d.ngrok.io/?img=" + downu
+        Log.d("url", url)
+        val loginRequest = object: JsonObjectRequest(Method.GET, url, null, Response.Listener { response ->
+            try {
+                Toast.makeText(this,url,Toast.LENGTH_LONG).show()
+                val code = response.getString("prediction").toInt()
+                Log.d("Food", url)
+                Log.d("Food", code.toString())
+                Toast.makeText(this,code.toString(),Toast.LENGTH_LONG).show()
+
+                for(key in hashMap.keys){
+                    if(code == key) {
+                        category = hashMap.get(key)!!
+                        s = "true"
+                    }
+                }
+
+            } catch (e: JSONException) {
+                Log.d("JSON", "EXC: " + e.localizedMessage)
+            }
+        }, Response.ErrorListener { error ->
+            Log.d("ERROR", "Could not send mail: $error")
+
+        }) {
+            override fun getBodyContentType(): String {
+                return "application/json; charset=utf-8"
+            }
+        }
+        loginRequest.retryPolicy = DefaultRetryPolicy(60000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT)
+
+        Volley.newRequestQueue(this).add(loginRequest)
+
     }
 
 
@@ -204,6 +321,8 @@ class FoodScannerActivity : AppCompatActivity(), NavigationView.OnNavigationItem
         return true
     }
 }
+
+
 
 
 
