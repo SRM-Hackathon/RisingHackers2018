@@ -22,8 +22,22 @@
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_below="@+id/tvHeader"
+        android:layout_below="@+id/show"
         android:background="@color/colorPrimary" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/show"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tvSteps"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="13dp"
+        android:gravity="center"
+        android:text="Number of steps-"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp" />
+
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/tvSteps"
@@ -32,7 +46,7 @@
         android:layout_centerVertical="true"
         android:gravity="center"
         android:textColor="@color/colorPrimary"
-        android:textSize="50sp" />
+        android:textSize="30sp" />
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/btnStart"
