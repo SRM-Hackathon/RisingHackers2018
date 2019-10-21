@@ -54,7 +54,7 @@ docker==3.5.0
 docker-pycreds==0.3.0
 docutils==0.14
 EasyProcess==0.2.3
-ecdsa==0.13
+ecdsa==0.13.3
 editdistance==0.5.2
 en-core-web-md==2.0.0
 en-core-web-sm==2.0.0
