@@ -20,7 +20,7 @@ cryptography==2.3.1
 cymem==1.31.2
 cytoolz==0.9.0.1
 dill==0.2.8.2
-Django==2.1.2
+Django==2.2.24
 docker==3.5.0
 docker-pycreds==0.3.0
 docutils==0.14
