@@ -59,7 +59,7 @@ pbr==4.3.0
 plac==0.9.6
 pluggy==0.7.1
 preshed==1.0.1
-protobuf==3.6.1
+protobuf==3.15.0
 py==1.6.0
 pyaml==17.12.1
 pyasn1==0.4.4
